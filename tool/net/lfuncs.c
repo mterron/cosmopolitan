@@ -770,6 +770,10 @@ int LuaEncodeBase64(lua_State *L) {
   return LuaCoder(L, EncodeBase64);
 }
 
+int LuaEncodeBase64Url(lua_State *L) {
+  return LuaCoder(L, EncodeBase64Url);
+}
+
 int LuaDecodeBase64(lua_State *L) {
   return LuaCoder(L, DecodeBase64);
 }

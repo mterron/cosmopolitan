@@ -61,3 +61,34 @@ char *EncodeBase64(const char *data, size_t size, size_t *out_size) {
   }
   return r;
 }
+
+/**
+ * Encodes binary to base64url ascii representation.
+ * https://datatracker.ietf.org/doc/html/rfc4648
+ *
+ * @param data is input value
+ * @param size if -1 implies strlen
+ * @param out_size if non-NULL receives output length
+ * @return allocated NUL-terminated buffer, or NULL w/ errno
+ */
+char *EncodeBase64Url(const char *data, size_t size, size_t *out_size) {
+  char *b64 = EncodeBase64(data, size, out_size);
+  if (!b64)
+    return NULL;
+
+  for (size_t i = 0; b64[i] != '\0'; i++) {
+    if (b64[i] == '+') {
+      b64[i] = '-';
+    } else if (b64[i] == '/') {
+      b64[i] = '_';
+    } else if (b64[i] == '=') {
+      b64[i] = '\0';
+      i--;
+    }
+  }
+
+  if (out_size) {
+    *out_size = strlen(b64);
+  }
+  return b64;
+}

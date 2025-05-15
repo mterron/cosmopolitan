@@ -5247,6 +5247,7 @@ static const luaL_Reg kLuaFuncs[] = {
     {"Deflate", LuaDeflate},                                    //
     {"EncodeBase32", LuaEncodeBase32},                          //
     {"EncodeBase64", LuaEncodeBase64},                          //
+    {"EncodeBase64Url", LuaEncodeBase64Url},                    //
     {"EncodeHex", LuaEncodeHex},                                //
     {"EncodeJson", LuaEncodeJson},                              //
     {"EncodeLatin1", LuaEncodeLatin1},                          //
